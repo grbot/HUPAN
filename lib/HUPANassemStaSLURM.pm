@@ -59,8 +59,8 @@ my ($data_dir,$out_dir,$quast_dir,$ref)=@ARGV;
 #Detect executable quast.py
 
 $quast_dir.="/" unless($quast_dir=~/\/$/);
-my $exec_quast=$quast_dir."quast.py";
-die("Error01: Cannot find quast.py file in directory $quast_dir\n") unless(-e $exec_quast);
+my $exec_quast=$quast_dir."quast";
+die("Error01: Cannot find quast file in directory $quast_dir\n") unless(-e $exec_quast);
 
 #Check existence of reference sequence file
 die("Error02: Cannot find reference sequence file\n") unless(-e $ref);
