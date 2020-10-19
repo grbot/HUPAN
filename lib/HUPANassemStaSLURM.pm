@@ -138,7 +138,7 @@ foreach my $s (@sample){
 
 #generate command
     my $com;
-    $com="python $exec_quast --eukaryote -t $thread_num --min-contig $min_length -o $sample_out --no-plots -R $ref $contig_file";
+    $com="$exec_quast --eukaryote -t $thread_num --min-contig $min_length -o $sample_out --no-plots -R $ref $contig_file";
 
 #generate and submit job script
 #************** Might be modified for different task submission system *******************
