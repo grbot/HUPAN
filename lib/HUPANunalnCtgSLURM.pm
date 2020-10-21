@@ -83,7 +83,7 @@ mkdir($job_out);
 my $script_out=$job_out."/scripts"; #job script directory
 mkdir($script_out);
 my $stderr_out=$job_out."/err";     #stdout directory
-#mkdir($stderr_out);
+mkdir($stderr_out);
 my $stdout_out=$job_out."/out";     #sdterr directory
 mkdir($stdout_out);
 ##*****************************************************************************************
