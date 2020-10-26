@@ -269,9 +269,10 @@ Options:
             print JOB "\#SBATCH --error=$err_file\n";               #stderr
             print JOB "\#SBATCH -n $thread_num\n";             #thread number
             print JOB "\#SBATCH --ntasks-per-node=$thread_num\n";
-            print JOB "$com\n";                              #commands
+            print JOB "\#SBATCH --time=192:00:00\n"; # set time
+	    print JOB "$com\n";                              #commands
             close JOB;
-            #system("sbatch $job_file");
+            system("sbatch $job_file");
         }
     }
 }
