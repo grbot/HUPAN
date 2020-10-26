@@ -126,7 +126,7 @@ print JOB "\#SBATCH -p $opt_q\n" if defined $opt_q;   #queue name in the submiss
     print JOB "\#SBATCH --output=$out_file\n";                   #stdout
     print JOB "\#SBATCH --error=$err_file\n";                   #stderr
     print JOB "\#SBATCH -n $thread_num\n";                 #thread number
-    print JOB "\#SBATCH --time=96:00:00\n"; # set time
+    print JOB "\#SBATCH --time=192:00:00\n"; # set time
     print JOB "\#SBATCH --ntasks-per-node=$thread_num\n"; #use the same node
     print JOB "$com\n";                                  #commands
     close JOB;
