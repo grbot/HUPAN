@@ -51,9 +51,9 @@ Options:
     my $thread_num=1;
     $thread_num=$opt_t if defined $opt_t;
 
-    my $maker_exe=$maker_dir."/bin/maker";
-    my $gff3_merge=$maker_dir."bin/gff3_merge";
-    my $fasta_merge=$maker_dir."bin/fasta_merge";
+    my $maker_exe=$maker_dir."/maker";
+    my $gff3_merge=$maker_dir."/gff3_merge";
+    my $fasta_merge=$maker_dir."/fasta_merge";
     die("Cannot found executable file: maker in directory $maker_dir\n") unless(-e $maker_exe);
     die("Cannot found executable file: gff3_merge in directory $maker_dir\n") unless(-e $gff3_merge);
     die("Cannot found executable file: fasta_merge  in directory $maker_dir\n") unless(-e $fasta_merge);
@@ -178,7 +178,8 @@ mkdir($stdout_out);
              my $input_file=$out_sd.$file;
              $com.="cp $target_file $input_file\n";
              system($com);
-             $com="$maker_exe -c $thread_num -fix_nucleotides -genome $file\n";
+	     $com="cd ".$out_sd."\n";
+             $com.="$maker_exe  maker_opts.ctl maker_bopts.ctl maker_opts.ctl -c $thread_num -fix_nucleotides -genome $file\n";
              $com.="cd ../../";
              my $log_file=$out_sd.$s.".maker.output/".$s."_master_datastore_index.log";
              my $fasta_prefix=$result_dir.$s;
@@ -187,9 +188,9 @@ mkdir($stdout_out);
              $com.="$gff3_merge -d $log_file -o $gff_file\n";
 #generate and submit job script
 ##************** Might be modified for different task submission system *******************
-             my $job_file="../job/scripts/".$s.".slurm";   #script_file
-             my $err_file="../job/err/".$s.".err";   #stderr_output_file
-             my $out_file="../job/out/".$s.".out";   #stdout_output_file
+             my $job_file=$out_dir."/job/scripts/".$s.".slurm";   #script_file
+             my $err_file=$out_dir."/job/err/".$s.".err";   #stderr_output_file
+             my $out_file=$out_dir."/job/out/".$s.".out";   #stdout_output_file
              #create job script
              open(JOB,">$job_file")||die("Error05: Unable to create job file: $job_file\n");
              print JOB "\#!/bin/bash\n";
@@ -198,6 +199,7 @@ mkdir($stdout_out);
              print JOB "\#SBATCH --error=$err_file\n";                 #stderr
              print JOB "\#SBATCH -n $thread_num\n";               #thread number
              print JOB "\#SBATCH --ntasks-per-node=$thread_num\n";
+	     print JOB "\#SBATCH --time=96:00:00\n"; # set time
              print JOB "$com\n";                                #commands
              close JOB;
              system("sbatch $job_file");                         #submit job
