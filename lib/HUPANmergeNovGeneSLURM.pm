@@ -55,10 +55,10 @@ Options:
     $justify=$opt_j if defined $opt_j;
     
 #get executable file
-    my $gff_merge=$maker_dir."bin/gff3_merge";
-    my $maker_map_ids=$maker_dir."bin/maker_map_ids";
-    my $map_gff_ids=$maker_dir."bin/map_gff_ids";
-    my $map_fasta_ids=$maker_dir."bin/map_fasta_ids";
+    my $gff_merge=$maker_dir."gff3_merge";
+    my $maker_map_ids=$maker_dir."maker_map_ids";
+    my $map_gff_ids=$maker_dir."map_gff_ids";
+    my $map_fasta_ids=$maker_dir."map_fasta_ids";
 
     my $gff_file="";
     my $all_prot_file=$out_dir."combine.all.maker.proteins.fasta";
