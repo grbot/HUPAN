@@ -661,6 +661,7 @@ foreach my $s (@sample){
     print JOB "\#SBATCH -n $thread_num\n";                  #thread number
     print JOB "\#SBATCH --ntasks-per-node=$thread_num\n";   #use the same node
     print JOB "\#SBATCH --time=336:00:00\n"; # set time
+    print JOB "\#SBATCH --account b88-cbio-008-ag\n"; # set account
     print JOB "$com\n";                                     #commands
     close JOB;    
     chdir "$o_dir";             
