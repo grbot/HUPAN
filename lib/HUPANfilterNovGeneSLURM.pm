@@ -116,7 +116,7 @@ Options:
     my $repeat_exe=$Repeatmask_dir."RepeatMasker";
     die(" $repeat_exe doesn't exist!\n") unless -e $repeat_exe;
 
-    my $exefg="filterNovelGene";
+    my $exefg="filterNovelgene.pl";
     my @path=split /:/,$ENV{PATH};
     my $fpflag=0;
     foreach my $p (@path){
