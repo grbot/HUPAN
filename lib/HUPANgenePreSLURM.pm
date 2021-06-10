@@ -179,7 +179,7 @@ mkdir($stdout_out);
              $com.="cp $target_file $input_file\n";
              system($com);
 	     $com="cd ".$out_sd."\n";
-             $com.="$maker_exe  maker_opts.ctl maker_bopts.ctl maker_opts.ctl -c $thread_num -fix_nucleotides -genome $file\n";
+             $com.="$maker_exe  maker_opts.ctl maker_bopts.ctl maker_exe.ctl -c $thread_num -fix_nucleotides -genome $file\n";
              $com.="cd ../../";
              my $log_file=$out_sd.$s.".maker.output/".$s."_master_datastore_index.log";
              my $fasta_prefix=$result_dir.$s;
