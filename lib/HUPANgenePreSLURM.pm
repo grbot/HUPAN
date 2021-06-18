@@ -117,13 +117,13 @@ mkdir($stdout_out);
     open(OUT,">$new_bopts_file")||die("Error10: cannot write the file: $new_bopts_file.\n");
     while(my $line=<IN>){
         chomp $line;
-        if(($line=~/^#/)||($line=~/\s*$/)){
+        if(($line=~/^#/)||($line=~/^\s*$/)){
             print OUT $line."\n";
         }
         else{
             my @string=split "=",$line;
             if(exists($config{$string[0]})){
-                print OUT $config{$string[0]}."\n";
+		print OUT $config{$string[0]} . "\n";
             }
             else{
                 print OUT $line."\n";
@@ -137,7 +137,7 @@ mkdir($stdout_out);
     open(OUT,">$new_exe_file")||die("Error10: cannot write the file: $new_exe_file.\n");
     while(my $line=<IN>){
         chomp $line;
-        if(($line=~/^#/)||($line=~/\s*$/)){
+        if(($line=~/^#/)||($line=~/^\s*$/)){
             print OUT $line."\n";
         }
         else{
@@ -153,6 +153,7 @@ mkdir($stdout_out);
     close IN;
     close OUT;
 
+     
 #read sample
     opendir(DATA,$data_dir) || die("Error: can not open the data directory: $data_dir!\n");
     my @samples=readdir(DATA);
@@ -179,7 +180,7 @@ mkdir($stdout_out);
              $com.="cp $target_file $input_file\n";
              system($com);
 	     $com="cd ".$out_sd."\n";
-             $com.="$maker_exe  maker_opts.ctl maker_bopts.ctl maker_exe.ctl -c $thread_num -fix_nucleotides -genome $file\n";
+             $com.="$maker_exe  maker_opts.ctl maker_bopts.ctl maker_opts.ctl -c $thread_num -fix_nucleotides -genome $file\n";
              $com.="cd ../../";
              my $log_file=$out_sd.$s.".maker.output/".$s."_master_datastore_index.log";
              my $fasta_prefix=$result_dir.$s;
